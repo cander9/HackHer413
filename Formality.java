@@ -14,7 +14,7 @@ public class Formality {
     int formality;
     int informality;
     private final String emo_regex = "([\\u20a0-\\u32ff\\ud83c\\udc00-\\ud83d\\udeff\\udbb9\\udce5-\\udbb9\\udcee])";
-
+    String report = "This is what we found regarding your formality score:";
 
     public String getFormalScore(String text){
         capitalization(text);
@@ -31,6 +31,11 @@ public class Formality {
         return("Not enough information");
     }
 
+    public String getFormalReport(String text){
+        String score = getFormalScore(text);
+        return(report);
+    }
+
     private void lengthOwords(String text) {
         String[] words = text.split("\\W+");
         int totWordLen = 0;
@@ -38,8 +43,14 @@ public class Formality {
             totWordLen += word.length();
         }
         int avgLen = totWordLen/(words.length);
-        if(avgLen > 6) formality += 2;
-        else informality++;
+        if(avgLen > 5){
+            formality += 2;
+            report += "\n  - You have a high average word length, which is considered formal";
+        }
+        else{
+            informality++;
+            report += "\n  - You have a low average word length, which is considered informal";
+        }
     }
 
     private void punctuation(String text) {
@@ -51,8 +62,12 @@ public class Formality {
                 countPuncMarks++;
             }
         }
-        if(countPuncMarks == 0 || (countPuncMarks/words.length) > 0.5){
+        if(countPuncMarks == 0){
             informality+=2;
+            report += "\n  - You had no punctuation, which is considered informal";
+        } else if ((countPuncMarks/words.length) > 0.5){
+            informality+=2;
+            report += "\n  - You possibly have excessive punctuation, which is considered informal";
         } else {
             formality++;
         }
@@ -65,15 +80,26 @@ public class Formality {
             informality++;
             emoCount++;
         }
-        if(emoCount == 0) formality++;
+        if(emoCount == 0){
+            formality++;
+            report += "\n  - You had no emojis, which is considered formal";
+        } else {
+            report += "\n  - You included emojis, which is considered informal";
+        }
     }
 
     private void capitalization(String text) {
+        int upperCount = 0;
         String[] words = text.split("\\W+");
         for(String word : words){
-            if(word.equals(word.toUpperCase())) informality++;
+            if(word.equals(word.toUpperCase())) {
+                informality++;
+                upperCount++;
+            }
+        }
+        if(upperCount > 0){
+            report += "\n  - You had some words in all caps, which is considered informal";
         }
     }
 
 }
-
