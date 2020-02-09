@@ -89,17 +89,18 @@ public class Formality {
     }
 
     private void capitalization(String text) {
-        int upperCount = 0;
+        int lowerCount = 0;
         String[] words = text.split("\\W+");
         for(String word : words){
-            if(word.equals(word.toUpperCase())) {
-                informality++;
-                upperCount++;
+            if(word.equals(word.toLowerCase())) {
+                lowerCount++;
             }
         }
-        if(upperCount > 0){
-            report += "\n  - You had some words in all caps, which is considered informal";
+        if(lowerCount == words.length){
+            informality += 2;
+            report += "\n  - You had no capitalization, which is considered informal";
         }
     }
 
 }
+
