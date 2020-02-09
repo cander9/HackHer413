@@ -24,14 +24,14 @@ public class Main2Activity extends AppCompatActivity {
         InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getApplicationWindowToken(),0);
         TextView tv = (TextView) findViewById(R.id.textView);
+        tv.setText("Passive Aggression: " + new PADetector().paScore(text) + "phrases");
         tv.setVisibility(View.VISIBLE);
         TextView tv2 = (TextView) findViewById(R.id.textView3);
+        tv2.setText("Readability: " + new Readability().getReadabilityScore(text));
         tv2.setVisibility(View.VISIBLE);
         TextView tv3 = (TextView) findViewById(R.id.textView4);
         tv3.setText("Formality: "+new Formality().getFormalScore(text));
         tv3.setVisibility(View.VISIBLE);
-        TextView tv4 = (TextView) findViewById(R.id.textView5);
-        tv4.setVisibility(View.VISIBLE);
     }
 
     public void passiveAggressiveHandler(View view){
