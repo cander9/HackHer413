@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 public class Main2Activity extends AppCompatActivity {
 
+    String text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,7 @@ public class Main2Activity extends AppCompatActivity {
         TextView tv2 = (TextView) findViewById(R.id.textView3);
         tv2.setVisibility(View.VISIBLE);
         TextView tv3 = (TextView) findViewById(R.id.textView4);
+        tv3.setText("Formality: "+new Formality().getFormalScore(text));
         tv3.setVisibility(View.VISIBLE);
         TextView tv4 = (TextView) findViewById(R.id.textView5);
         tv4.setVisibility(View.VISIBLE);
