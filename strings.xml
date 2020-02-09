@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TextMoodDetector</string>
+    <string name="button">Button</string>
+    <string name="textview">TextView</string>
+    <string name="analyze">analyze</string>
+    <string name="editText">. . .</string>
+    <string name="button4"><![CDATA[<]]></string>
+</resources>
