@@ -21,14 +21,16 @@ public class Main2Activity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
     }
 
-    public void switchScreen(View view){
+    public void switchScreen(View view) {
         Intent intent = new Intent(Main2Activity.this, MainActivity.class);
         startActivity(intent);
     }
 
-    public void analyzeHandler(View view){
-        InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getApplicationWindowToken(),0);
+    public void analyzeHandler(View view) {
+        EditText et = (EditText) findViewById(R.id.editText);
+        text = et.getText().toString();
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
         TextView tv = (TextView) findViewById(R.id.textView);
         tv.setText("Passive Aggression: " + new PADetector().paScore(text));
         tv.setVisibility(View.VISIBLE);
@@ -36,11 +38,11 @@ public class Main2Activity extends AppCompatActivity {
         tv2.setText("Readability: " + new Readability().getReadabilityScore(text));
         tv2.setVisibility(View.VISIBLE);
         TextView tv3 = (TextView) findViewById(R.id.textView4);
-        tv3.setText("Formality: "+new Formality().getFormalScore(text));
+        tv3.setText("Formality: " + new Formality().getFormalScore(text));
         tv3.setVisibility(View.VISIBLE);
     }
 
-    public void passiveAggressiveHandler(View view){
+    public void passiveAggressiveHandler(View view) {
         Button x = (Button) findViewById(R.id.button3);
         x.setVisibility(View.VISIBLE);
         TextView label = (TextView) findViewById(R.id.textView2);
@@ -52,7 +54,7 @@ public class Main2Activity extends AppCompatActivity {
         descrip.setText(new PADetector().paReport(text));
     }
 
-    public void readabilityHandler(View view){
+    public void readabilityHandler(View view) {
         Button x = (Button) findViewById(R.id.button3);
         x.setVisibility(View.VISIBLE);
         TextView label = (TextView) findViewById(R.id.textView2);
@@ -63,7 +65,7 @@ public class Main2Activity extends AppCompatActivity {
         descrip.setText(new Readability().getReadabilityReport(text));
     }
 
-    public void formalityHandler(View view){
+    public void formalityHandler(View view) {
         Button x = (Button) findViewById(R.id.button3);
         x.setVisibility(View.VISIBLE);
         TextView label = (TextView) findViewById(R.id.textView2);
@@ -74,7 +76,7 @@ public class Main2Activity extends AppCompatActivity {
         descrip.setText(new Formality().getFormalReport(text));
     }
 
-    public void xHandler(View view){
+    public void xHandler(View view) {
         Button x = (Button) findViewById(R.id.button3);
         x.setVisibility(View.INVISIBLE);
         TextView label = (TextView) findViewById(R.id.textView2);
@@ -83,7 +85,7 @@ public class Main2Activity extends AppCompatActivity {
         descrip.setVisibility(View.INVISIBLE);
     }
 
-    public void editTextHandler(View view){
+    public void editTextHandler(View view) {
         TextView tv = (TextView) findViewById(R.id.textView);
         tv.setVisibility(View.INVISIBLE);
         TextView tv2 = (TextView) findViewById(R.id.textView3);
@@ -91,5 +93,4 @@ public class Main2Activity extends AppCompatActivity {
         TextView tv3 = (TextView) findViewById(R.id.textView4);
         tv3.setVisibility(View.INVISIBLE);
     }
-
 }
