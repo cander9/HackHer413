@@ -53,6 +53,20 @@ public class PADetector {
         return(Integer.toString(paCount));
 
     }
+    
+    public String paReport(String text){
+        
+        String score = paScore(text);
+        if(paWords.size()>0) {
+            String report = "These are the phrases that you used that may be considered passive aggressive:";
+            for (String word : paWords) {
+                report += "\n  - " + word;
+            }
+            return(report);
+        } else {
+            String report = "You didn't use any common passive aggressive phrases!";
+            return(report);
+        }
+    }
 
 }
-
