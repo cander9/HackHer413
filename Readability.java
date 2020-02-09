@@ -10,7 +10,8 @@ public class Readability {
         double asl = getASL(text);
         double asw = getASW(text);
         double readability = 206.835 - (1.015*asl) - (84.6*asw);
-        String readReport = Double.toString(readability) + "%";
+        readability = Math.round(readability);
+        String readReport = Double.toString(readability);
         return(readReport);
     }
 
