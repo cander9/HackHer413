@@ -22,8 +22,10 @@ public class Formality {
         punctuation(text);
         lengthOwords(text);
         if(formality+informality > 0) {
-            int score = formality / (formality + informality) * 100;
-            String scoreReport = Integer.toString(score) + "%";
+            double denominator = formality + informality;
+            double score = (formality/denominator) * 100;
+            score = Math.round(score);
+            String scoreReport = Double.toString(score) + "%";
             return(scoreReport);
         }
         return("Not enough information");
@@ -69,10 +71,9 @@ public class Formality {
     private void capitalization(String text) {
         String[] words = text.split("\\W+");
         for(String word : words){
-            String capWord = word.substring(0, 1).toUpperCase() + word.substring(1);
-            if(word.equals(capWord)) formality++;
             if(word.equals(word.toUpperCase())) informality++;
         }
     }
 
 }
+
