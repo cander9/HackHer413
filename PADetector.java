@@ -1,44 +1,58 @@
 package com.example.textmooddetector;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.*;
+
 
 public class PADetector {
 
-    String filePath = "pawords.txt";
+    String filePath = "i just feel like\n" +
+            "okay.\n" +
+            "okay?\n" +
+            "ok.\n" +
+            "ok?\n" +
+            "k.\n" +
+            "whatever\n" +
+            "joking\n" +
+            "take a joke\n" +
+            "thanks in advance\n" +
+            "fine\n" +
+            "consider\n" +
+            "just saying\n" +
+            "i'm not mad\n" +
+            "whatever you want\n" +
+            "i'm curious\n" +
+            "surprised\n" +
+            "confused\n" +
+            "why are you\n" +
+            "i hope\n" +
+            "i wish i was as\n" +
+            "no need to thank me\n" +
+            "i thought you knew\n" +
+            "no offense\n" +
+            "no offence\n" +
+            "for someone like\n" +
+            "for someone of\n" +
+            "sensitive\n" +
+            "be so\n" +
+            "being so";
+    ArrayList<String> paWords = new ArrayList<>();
 
-    public String keyWordDetector(String text) throws IOException {
+
+    public String paScore(String text){
 
         text = text.toLowerCase();
-        BufferedReader br = new BufferedReader(new FileReader(filePath));
-
-        String st;
-        ArrayList<String> paWords = new ArrayList<>();
-        while (true) {
-            try {
-                if (((st = br.readLine()) == null)) break;
-                    if(text.contains(st)){
-                        paWords.add(st);
-                    }
-                }
-            catch (IOException e) {
-                e.printStackTrace();
+        String[] phrases = filePath.split("\n");
+        int paCount = 0;
+        for(String phrase : phrases){
+            if(text.contains(phrase)){
+                paWords.add(phrase);
+                paCount++;
             }
         }
 
-        if (paWords != null){
-            String paMessage = "Uh oh! It looks like your text might be passive aggressive. Here are the phrases we flagged:" + "\n";
-            for(String word : paWords){
-                paMessage = paMessage + "     " + word + "\n";
-            }
-            return(paMessage);
-        }
-
-        return("Your text sounds great! Go ahead and send it.");
+        return(Integer.toString(paCount));
 
     }
 
 }
+
