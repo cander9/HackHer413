@@ -21,9 +21,12 @@ public class Formality {
         emojis(text);
         punctuation(text);
         lengthOwords(text);
-        int score = formality/(formality+informality) * 100;
-        String scoreReport = Integer.toString(score) + "%";
-        return(scoreReport);
+        if(formality+informality > 0) {
+            int score = formality / (formality + informality) * 100;
+            String scoreReport = Integer.toString(score) + "%";
+            return(scoreReport);
+        }
+        return("Not enough information");
     }
 
     private void lengthOwords(String text) {
