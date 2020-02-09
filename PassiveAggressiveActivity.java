@@ -11,7 +11,7 @@ public class PassiveAggressiveActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_passive_agressive);
+        setContentView(R.layout.activity_passive_aggressive);
     }
 
     public void switchScreen(View view){
